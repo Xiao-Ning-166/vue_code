@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>初识Vue</title>
+  <!-- 引入Vue -->
   <script src="../js/vue.js"></script>
 </head>
 <body>
@@ -14,11 +15,33 @@
     Vue.config.productionTip = false;
 
     var app = new Vue({
+      // el：用于指定当前Vue实例为哪个容器服务。通常是css选择器字符串
       el: '#main',
+      // data：用于存储数据，供el所指定的容器使用
       data: {
         message: 'Hello Vue!'
       }
     })
   </script>
+  <!--
+    初识Vue：
+      1、想让Vue工作，必须创建一个Vue实例，并且传入一个配置对象
+      2、main 容器中的的代码依然符合HTML规范，只不过混入了一些特殊的Vue语法
+      3、main 容器的中代码被称为【Vue模板】
+      4、Vue实例和容器是一一对应的
+      5、真实开发中只有一个Vue实例，并且配合组件使用
+      6、{{xxx}}，xxx要写js表达式，xxx可以自动读取到data中的所有属性
+      7、一旦data中的数据发生变化，模板中用到该数据的地方也会跟着更新
+    
+    注意区分：js表达式 和 js代码(语句)
+      1、表达式：一个表达式会产生一个值，可以放在任何需要值的地方。例如：
+        (1) 变量。a
+        (2) 运算表达式。a+b
+        (3) 函数调用表达式.demo(1)
+        (4) 三元表达式。x === y ? 'yes' : 'no'
+      2、js代码(语句)。例如：
+        (1) if(){}
+        (2) for(){}
+  -->
 </body>
 </html>
