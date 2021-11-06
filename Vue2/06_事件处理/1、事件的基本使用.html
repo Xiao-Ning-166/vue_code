@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue中的数据代理</title>
+  <!-- 引入Vue -->
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <!-- 
+        事件的基本使用：
+            1、使用 v-on:xxx 或 @xxx 绑定事件，其中xxx是事件名
+            2、事件的回调需要配置在 methods对象中，最终会在vm上
+            3、methods中配置的函数，不要用箭头函数！否则this就不是vm了
+            4、methods中配置的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象
+            5、@click="demo" 和 @click="demo($event)"效果一致，但后者可以传参
+  -->
+  <div id="main">
+    <h1>学校名称：{{name}}</h2>
+    <button v-on:click="showInfo">点我一下（不传参）</button>
+    <button @click="showInfo2(66)">简写：点我一下（传参）</button>
+    <button @click="showInfo3($event,66)">简写：点我一下2（传参event）</button>
+  </div>
+
+  <script type="text/javascript">
+    // 阻止vue在启动时生成生产提示
+    Vue.config.productionTip = false;
+    // 创建Vue实例
+    var vm = new Vue({
+        el: '#main',
+        data: {
+            name: '湖北第二师范学院',
+        },
+        methods: {
+            showInfo() {
+                alert("这是一个单击事件！！！")
+            },
+            showInfo2(num) {
+                console.log(num)
+                alert("这是一个传参的单击事件！！")
+            },
+            showInfo3(event,num) {
+                console.log(event, num)
+                alert("这是是一个传参的单击事件！！")
+            }
+        }
+    })
+  </script>
+
+  </body>
+  </html>
