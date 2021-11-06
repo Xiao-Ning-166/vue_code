@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>姓名案例——methods实现</title>
+        <!-- 引入Vue -->
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!--
+            data中的值发生改变，Vue会重新解析模板，如果遇到插值语法中调用方法，会重新调用一次
+        -->
+        <div id="main">
+            姓：<input type="text" v-model="firstName"> <br><br>
+            名：<input type="text" v-model="lastName"> <br><br>
+            全名：<span>{{fullName()}}</span>
+        </div>
+        <script type="text/javascript">
+            // 阻止vue在启动时生成生产提示
+            Vue.config.productionTip = false;
+            // 创建Vue实例
+            var vm = new Vue({
+                el: '#main',
+                data: {
+                    firstName: '张',
+                    lastName: '三'
+                },
+                methods: {
+                    fullName() {
+                        // 姓为输入的前3个字符
+                        firstName = this.firstName.slice(0,3)
+                        lastName = this.lastName
+                        return firstName + '-' + lastName
+                    }
+                }
+            })
+        </script>
+
+    </body>
+</html>
