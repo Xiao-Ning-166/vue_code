@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue事件修饰符</title>
+  <!-- 引入Vue -->
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <!-- 
+        Vue中的事件修饰符：
+            1、prevent：阻止默认事件（常用）
+            2、stop：阻止事件冒泡（常用）
+            3、once：事件只触发一次（常用）
+            4、capture：使用事件的捕获模式
+            5、self：只有event.targe是当前操作的元素时，才触发事件
+            6、passive：事件的默认行为立即执行，无需等待事件回调执行完毕
+        Vue事件修饰符的使用格式：
+            v-on:事件名称.事件修饰符 或 @事件名称.事件修饰符
+  -->
+  <div id="main">
+    <h1>学校名称：{{name}}</h2>
+    <a href="http://www.baidu.com" @click="showInfo">不带事件修饰符</a> <br><br>
+    <a href="http://www.baidu.com" @click.prevent="showInfo">带事件修饰符（阻止默认事件）</a> <br><br>
+
+    <div style="height: 90px; background-color: skyblue;" @click="showInfo">
+        <button @click="showInfo">不带事件修饰符</button> <br><br>
+        <button @click.stop="showInfo">带事件修饰符（阻止事件冒泡）</button>
+    </div>
+    <br><br>
+
+    <button @click="showInfo">不带事件修饰符</button> <br>
+    <button @click.once="showInfo">带事件修饰符（事件只触发一次）</button>
+    <br><br>
+
+    <div style="height: 90px; background-color: skyblue;" @click="showMsg(1)">
+        <br> <button @click="showMsg(2)">不带事件修饰符</button>
+    </div>
+    <div style="height: 90px; background-color: yellow;" @click.capture="showMsg(1)">
+        <br> <button @click.capture="showMsg(2)">带事件修饰符（使用事件的捕获模式）</button>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    // 阻止vue在启动时生成生产提示
+    Vue.config.productionTip = false;
+    // 创建Vue实例
+    var vm = new Vue({
+        el: '#main',
+        data: {
+            name: '湖北第二师范学院',
+        },
+        methods: {
+            showInfo() {
+                alert("这是一个单击事件！！！")
+            },
+            showMsg(num) {
+                alert(num)
+            }
+        }
+    })
+  </script>
+
+  </body>
+  </html>
