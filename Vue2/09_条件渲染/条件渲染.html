@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>条件渲染</title>
+        <!-- 引入Vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!--  
+            条件渲染：
+                1、v-if：
+                    写法：
+                        (1) v-if="表达式"
+                        (2) v-else-if="表达式"
+                        (3) v-else="表达式"
+                    适用于：切换频率较低的场景
+                    特点：不展示的DOM元素直接被移除
+                    注意：v-if可以和v-else-if、v-else一起使用，但要求结构不能被打断
+
+                2、v-show：
+                    写法：v-show="表达式"
+                    适用于：切换频率较高的场景
+                    特点：不展示的DOM元素未被移除，仅仅是使用样式隐藏掉
+                
+                3、注意：
+                    使用 v-if的时候，元素可能无法获取到，而使用v-show一定可以获取到
+        -->
+        <div id="root">
+            <h1>条件渲染</h1>
+            <h2>当前num的值：{{num}}</h2>
+            <button @click="num++">点我num+1</button> <br>
+
+            <!-- 使用v-show做条件渲染 -->
+            <h3 v-show="num == 1">欢迎来到{{name}} —— v-show</h3>
+
+            <!-- 使用v-if做条件渲染 -->
+            <h3 v-if="num == 2">欢迎来到{{name}} —— v-if</h3>
+            <h3 v-else-if="num == 3">欢迎来到{{name}} —— v-else-if</h3>
+            <h3 v-else-if="num == 4">欢迎来到{{name}} —— v-else-if2</h3>
+            <h3 v-else>欢迎来到{{name}} —— v-else</h3>
+
+            <!-- v-if 和 template的配合使用 -->
+            <template v-if="num == 5">
+                <h3>111</h3>
+                <h3>222</h3>
+                <h3>333</h3>
+            </template>
+        </div>
+    </body>
+    <script type="text/javascript">
+        // 阻止vue在启动时生成生产提示
+        Vue.config.productionTip = false
+        
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                name: '尚硅谷',
+                num: 0
+            }
+        })
+    
+    </script>
+</html>
