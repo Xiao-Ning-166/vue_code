@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>姓名案例——计算属性实现</title>
+        <!-- 引入Vue -->
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        
+        <div id="main">
+            姓：<input type="text" v-model="firstName"> <br><br>
+            名：<input type="text" v-model="lastName"> <br><br>
+            全名：<span>{{fullName}}</span>
+        </div>
+        <script type="text/javascript">
+            // 阻止vue在启动时生成生产提示
+            Vue.config.productionTip = false;
+            // 创建Vue实例
+            var vm = new Vue({
+                el: '#main',
+                data: {
+                    firstName: '张',
+                    lastName: '三'
+                },
+                // computed：配置计算属性
+                computed: {
+                    /* 完整版本
+                    fullName: {
+                        get() {
+                            // 此处的 this 是 vm
+                            return this.firstName + '-' + this.lastName
+                        },
+                        set(value) {
+                            // 此处的 this 是 vm
+                            var s = value.split('-')
+                            this.firstName = s[0]
+                            this.lastName = s[1]
+                        }
+                    } 
+                    */
+
+                    // 简写版本：在只有get的时候使用
+                    fullName() {
+                        // get函数体
+                        return this.firstName + '-' + this.lastName
+                    }
+                }
+            })
+        </script>
+
+    </body>
+</html>
