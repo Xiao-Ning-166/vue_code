@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>列表过滤</title>
+        <!-- 引入Vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!--  
+            
+        -->
+        <div id="root">
+            <h1>列表过滤</h1>
+            <h2>监视（侦听）属性实现</h2>
+            <input type="text" placeholder="请输入姓名" v-model="name">
+            <ul>
+                <!-- index是索引 -->
+                <li v-for="(person,index) in res" :key="person.id">
+                    {{person.name}} - {{person.age}} - {{person.sex}}
+                </li>
+            </ul>
+
+            <h2>计算属性实现</h2>
+            <input type="text" placeholder="请输入姓名" v-model="name">
+            <ul>
+                <!-- index是索引 -->
+                <li v-for="(person,index) in res2" :key="person.id">
+                    {{person.name}} - {{person.age}} - {{person.sex}}
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script type="text/javascript">
+        // 阻止vue在启动时生成生产提示
+        Vue.config.productionTip = false
+        
+        /* 监视属性实现方式
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                name: '',
+                personArr: [
+                    {id:'001', name:'马冬梅', age:18,sex:'女'},
+                    {id:'002', name:'周冬雨', age:19,sex:'女'},
+                    {id:'003', name:'周杰伦', age:20,sex:'男'},
+                    {id:'004', name:'温兆伦', age:21,sex:'男'}
+                ],
+                res: []
+            },
+            watch: {
+                name: {
+                    immediate: true,
+                    handler(newValue) {
+                        this.res = this.personArr.filter((person)=>{
+                            return person.name.indexOf(newValue) != -1
+                        })
+                    }
+                }
+            }
+        })
+        */
+        
+        // 计算属性实现方式
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                name: '',
+                personArr: [
+                    {id:'001', name:'马冬梅', age:18,sex:'女'},
+                    {id:'002', name:'周冬雨', age:19,sex:'女'},
+                    {id:'003', name:'周杰伦', age:20,sex:'男'},
+                    {id:'004', name:'温兆伦', age:21,sex:'男'}
+                ]
+            },
+            computed: {
+                res2() {
+                    return this.personArr.filter((person)=>{
+                        return person.name.indexOf(this.name) != -1
+                    })
+                }
+            }
+        })
+    
+    </script>
+</html>
