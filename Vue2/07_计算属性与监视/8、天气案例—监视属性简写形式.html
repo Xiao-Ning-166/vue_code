@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>天气案例——监视属性简写形式</title>
+        <!-- 引入Vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+
+        <div id="root">
+            <h2>今天天气很{{info}}</h2>
+            <button @click="switchWeather">切换天气</button> <br><br>
+            <!-- 绑定事件的时候：@xxx="yyy" yyy可以是一些简单的语句 -->
+            <button @click="isHot = !isHot">切换天气</button>
+        </div>
+    </body>
+    <script type="text/javascript">
+        // 阻止vue在启动时生成生产提示
+        Vue.config.productionTip = false
+        
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                isHot: true
+            },
+            computed: {
+                info() {
+                    return this.isHot ? '炎热' : '凉爽'
+                }
+            },
+            methods: {
+                switchWeather() {
+                    this.isHot = !this.isHot
+                }
+            },
+            // 配置监视属性，配置方法一
+            watch: {
+                /* 监视isHot —— 正常写法
+                isHot: {
+                    // 是否初始化时调用一次handler，默认false
+                    immediate: false,
+                    // 是否开启深度监视，默认false
+                    deep: false,
+                    // handler什么时候调用？
+                        // isHot发生改变时
+                    handler(newValue, oldValue) {
+                        console.log('isHot被修改了',newValue, oldValue)
+                    }
+                }
+                */
+                
+                // 简写（只有handler()时使用）
+                isHot(newValue, oldValue) {
+                    console.log('isHost被修改了',newValue, oldValue)
+                }
+            }
+        })
+
+        // 第二种配置方式简写
+        vm.$watch('isHot', function(newValue, oldValue){
+            console.log('isHost被修改了',newValue, oldValue)
+        })
+        
+    </script>
+</html>
