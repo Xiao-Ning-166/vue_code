@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>v-pre指令的使用</title>
+        <!-- 引入Vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!--  
+            v-pre指令：
+                1、跳过其所在节点的编译过程
+                2、可以利用它跳过：
+                    没有使用指令语法、没有使用插值语法的节点，会加快编译
+        -->
+        <div id="root">
+            <h1>v-pre指令的使用</h1>
+            
+            <h2 v-pre>v-pre指令会跳过本节点</h2>
+            <h2>当前值：{{num}}</h2>
+            <button @click="num++">num+1</button>
+
+        </div>
+
+    </body>
+    <script type="text/javascript">
+        // 阻止vue在启动时生成生产提示
+        Vue.config.productionTip = false
+        
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                num: 1
+            }
+        })
+
+    
+    </script>
+</html>
