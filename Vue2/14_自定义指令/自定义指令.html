@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>v-text指令的使用</title>
+        <!-- 引入Vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+        <script type="text/javascript" src="../js/dayjs.min.js"></script>
+    </head>
+    <body>
+        <!--  
+            自定义指令总结：
+                1、定义语法：
+                    (1) 局部指令：
+                        new Vue({                              new Vue(
+                            directives:{指令名:配置对象}  或        directives{指令名:函数}
+                        })                                     })
+                    (2) 全局指令：
+                        (a) Vue.directive(指令名,配置对象)
+                        (b) vue.directive(指令名,回调函数)
+
+                2、配置对象中常用的3个回调：
+                    (1) bind：指令与元素成功绑定时调用
+                    (2) inserted：指令所在元素被插入页面时调用
+                    (3) update：指令所在模板结构被重新解析时调用
+
+                3、备注：
+                    (1) 指令定义时不加 v-，但使用时要加 v-
+                    (2) 指令名如果是多个单词，要使用 kebab-case 命名方式，不要用小驼峰命名
+        -->
+        <h1>v-text指令的使用</h1>
+
+        
+        <div id="root">
+            <!-- 需求1：定义一个v-big指令，和v-text功能类似，但会把绑定的数值放大10倍 -->
+            <p>当前的n值是：<span v-text="n"></span></p>
+            <p>放大10倍后的n值是：<span v-big=n></span></p>
+            <button @click="n++">n+1</button>
+            <hr>
+            
+            <!-- 需求2：定义一个v-fbind指令，和v-bind功能类似，但可以让其所绑定的input元素默认获取到焦点 -->
+            <input type="text" v-fbind:value="n">
+        </div>
+
+        
+
+    </body>
+    <script type="text/javascript">
+        // 阻止vue在启动时生成生产提示
+        Vue.config.productionTip = false
+        
+        // 全局自定义指令
+        Vue.directive('big2',function(element, binding) {
+            element.innerText = binding.value * 10
+        })
+        Vue.directive('fbind2',{
+            // 指令与元素成功绑定时调用
+            bind(element,binding) {
+                element.value = binding.value
+            },
+            // 指令所在元素被插入页面时调用
+            inserted(element,binding) {
+                element.focus()
+            },
+            // 指令所在模板被重新解析时
+            update(element,binding) {
+                element.value = binding.value
+            }
+        })
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                n: 1
+            },
+            // 配置局部自定义指令
+            directives: {
+                /* 
+                    element：自定义指令所在的标签
+                    big函数什么时候被调用？
+                        1、指令与元素成功绑定时
+                        2、指令所在的模板被重新解析时
+                */
+                // 配置方法1：函数式
+                big(element,binding) {
+                    element.innerText = binding.value * 10
+                },
+                // 配置方法2：对象式
+                fbind: {
+                    // 指令与元素成功绑定时调用
+                    bind(element,binding) {
+                        element.value = binding.value
+                    },
+                    // 指令所在元素被插入页面时调用
+                    inserted(element,binding) {
+                        element.focus()
+                    },
+                    // 指令所在模板被重新解析时
+                    update(element,binding) {
+                        element.value = binding.value
+                    }
+                }
+            }
+        })
+
+    
+    </script>
+</html>
