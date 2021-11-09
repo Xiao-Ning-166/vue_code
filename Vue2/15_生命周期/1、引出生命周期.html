@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>引出Vue的生命周期</title>
+        <!-- 引入Vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!--
+            生命周期：
+                1、又名：生命周期回调函数、生命周期函数、生命周期钩子
+                2、是什么：Vue在关键时刻帮我们调用的一些特殊名称的函数
+                3、生命周期函数的名字不可更改，但函数的具体内容是程序员根据需求编写的
+                4、生命周期函数中的this指向是 vm 或 组件实例对象
+        -->
+        <h1>引入Vue的生命周期</h1>
+        
+        <div id="root">
+            <h2 :style="{opacity: tmd}">欢迎学习Vue</h2>
+        </div>
+
+        
+
+    </body>
+    <script type="text/javascript">
+        // 阻止vue在启动时生成生产提示
+        Vue.config.productionTip = false
+        
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                tmd: 1
+            },
+            methods: {
+                
+            },
+            // Vue完成模板解析并把初始真实DOM放入页面后(完成挂载)调用
+            mounted() {
+                setInterval(()=>{
+                    this.tmd -= 0.1
+                    if(this.tmd <= 0) {
+                        this.tmd = 1
+                    }
+                },200)
+            }
+        })
+
+        /* 通过外部的定时器实现（不推荐）
+        setInterval(()=>{
+            vm.tmd -= 0.1
+            if(vm.tmd <= 0) {
+                vm.tmd = 1
+            }
+        },200)
+        */
+    
+    </script>
+</html>
