@@ -15,11 +15,7 @@
         -->
 
         <div id="root">
-            <h1>{{title}}</h1>
-
             <school></school>
-
-            <student></student>
         </div>
 
     </body>
@@ -27,50 +23,61 @@
         // 阻止vue在启动时生成生产提示
         Vue.config.productionTip = false
 
-        // 第一步：创建school组件
+        Vue.prototype.x = 100
+
         const school = Vue.extend({
             template: `
                 <div>
-                    <h2>学校姓名：{{schoolName}}</h2>
-                    <h2>学校地址：{{address}}</h2>
-                </div>
-            `,
-            data: function() {
-                return {
-                    schoolName: '湖北第二师范学院',
-                    address: '湖口'
-                }
-            }
-        })
-
-        const student = Vue.extend({
-            template:`
-                <div>
-                    <h2>学生姓名：{{name}}</h2>
-                    <h2>学生年龄：{{age}}</h2>
+                    <h2>{{msg}}</h2>    
+                    <button @click="show">点我显式X的值</button>
                 </div>
             `,
             data() {
                 return {
-                    name: '赵四儿',
-                    age: 70
+                    msg: '你好'
+                }
+            },
+            methods: {
+                show() {
+                    console.log('组件实例对象', this.x)
                 }
             }
         })
 
-        console.log(school)
-        console.log(student)
-
         var vm = new Vue({
             el: '#root',
-            data: {
-                title: 'VueComponent构造函数'
-            },
             components: {
-                school: school,
-                student: student
+                // 组件名:组件
+                school: school
             }
         })
+
+        console.log('vm',vm.x)
+
+        /*
+        // 定义一个构造函数
+        function Demo() {
+            this.a = 1
+            this.b = 2
+        }
+
+        // 创建一个Demo的实例对象
+        const d = new Demo()
+
+        // 显式原型属性
+        console.log(Demo.prototype)
+
+        // 隐式原型属性
+        console.log(d.__proto__)
+
+        console.log(Demo.prototype === d.__proto__)
+
+        // 程序员通过显式原型属性操作原型对象，追加一个X属性，值为99
+        Demo.prototype.x = 99
+
+        console.log(d)
+        */
+
 
     </script>
 </html>
