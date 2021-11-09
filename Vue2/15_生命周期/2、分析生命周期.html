@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>分析Vue的生命周期</title>
+        <!-- 引入Vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!--
+            常用的生命周期钩子
+                1、mounted：发送ajax请求、启动定时器、绑定自定义事件、订阅消息等【初始化操作】
+                2、beforDestroy：清除定时器、解绑自定义时间、取消订阅消息等【收尾工作】
+            关于销毁实例：
+                1、销毁后借助Vue开发者工具看不到任何信息
+                2、销毁后自定义事件会失效，但原生DOM事件依然有效
+                3、一般不会在beforeDestory操作数据，因为即使操作数据，也不会再出发更新流程
+        -->
+        <h1>分析Vue的生命周期</h1>
+        
+        <div id="root">
+            <h2>当前的n值是：{{n}}</h2>
+            <button @click="add">n+1</button>
+            <button @click="bye">销毁vm</button>
+        </div>
+
+        
+
+    </body>
+    <script type="text/javascript">
+        // 阻止vue在启动时生成生产提示
+        Vue.config.productionTip = false
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                n: 1
+            },
+            methods: {
+                add() {
+                    this.n++
+                },
+                bye() {
+                    console.log('bye')
+                    this.$destroy()
+                }
+            },
+            /*
+                建立数据监测、数据代理前触发。
+                此时调用不到数据、方法等
+            */
+            beforeCreate() {
+                console.log('beforCreate')
+            },
+            /*
+                建立完成数据监测、数据代理后触发。
+                此时可以放到data中的数据、methods中配置的方法
+            */
+            created() {
+                console.log('create')
+            },
+            /*
+                建立虚拟DOM，页面还不能显示解析内容时触发。
+                1、此时页面呈现的是未经Vue编译的DOM结构
+                2、所有对DOM的操作，最终都不凑效
+            */
+            beforeMount() {
+                console.log('beforeMount')
+            },
+            /*
+                Vue完成模板解析并把初始真实DOM放入页面后(完成挂载)调用
+                1、页面呈现的是经过Vue编译的DOM
+                2、对DOM的操作均有效，初始化过程结束。
+            */
+            mounted() {
+                console.log('mounted')
+            },
+            /*
+                当数据发生改变时调用
+                1、此时的数据是新的，但页面是旧的。
+                    即：页面尚未和数据保持同步
+            */
+            beforeUpdate() {
+                console.log('beforeUpdate')
+            },
+            /*
+                数据是新的，页面也是新的
+            */
+            updated() {
+                console.log('update')
+                console.log(this.n)
+                debugger
+            },
+            /*
+                调用 vm.$destroy() 后触发
+            */
+            beforeDestroy() {
+                console.log('beforeDestroy')
+                console.log(this.n)
+            },
+            destroyed() {
+                console.log('destroyed')
+            }
+        })
+    
+    </script>
+</html>
