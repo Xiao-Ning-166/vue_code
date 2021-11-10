@@ -7,7 +7,12 @@
     index: {
       // 配置App的入口程序
       // entry: 'src/main_copy.js',
-      entry: 'src/main.js',
+
+      // 01_分析Vue脚手架
+      // entry: '01_分析Vue脚手架_src/main.js',
+
+      // 01_分析Vue脚手架
+      entry: '02_Vue中ref属性的使用_src/main.js',
     } 
   }
 }
