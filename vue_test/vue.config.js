@@ -21,7 +21,10 @@
       // entry: '04_Vue中mixin配置项的使用_src/main.js'
 
       // 05_Vue中插件的使用
-      entry: '05_Vue中插件的使用_src/main.js'
+      // entry: '05_Vue中插件的使用_src/main.js'
+
+      // 06_Vue中scoped样式的使用
+      entry: '06_Vue中scoped样式的使用_src/main.js'
     } 
   }
 }
