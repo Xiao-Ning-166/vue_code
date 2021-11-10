@@ -15,7 +15,10 @@
       // entry: '02_Vue中ref属性的使用_src/main.js',
 
       // 03_Vue中的prop配置项的使用
-      entry: '03_Vue中的prop配置项_src/main.js'
+      // entry: '03_Vue中的prop配置项_src/main.js'
+
+      // 04_Vue中mixin配置项的使用
+      entry: '04_Vue中mixin配置项的使用_src/main.js'
     } 
   }
 }
