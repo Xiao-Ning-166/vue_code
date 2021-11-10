@@ -18,7 +18,10 @@
       // entry: '03_Vue中的prop配置项_src/main.js'
 
       // 04_Vue中mixin配置项的使用
-      entry: '04_Vue中mixin配置项的使用_src/main.js'
+      // entry: '04_Vue中mixin配置项的使用_src/main.js'
+
+      // 05_Vue中插件的使用
+      entry: '05_Vue中插件的使用_src/main.js'
     } 
   }
 }
