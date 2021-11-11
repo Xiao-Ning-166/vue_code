@@ -58,3 +58,48 @@
 &emsp;- 例如：`<Student @click.native="getStudentName">`
 7. &emsp;注意：通过 `this.$refs.xxx.$on('事件名称',回调)` 绑定自定义事件，回调<font style="color: red;">要么配置在methods中，要么用箭头函数</font>，否则this指向会出问题
 <br><br>
+
+
+## 全局事件总线（GlobalEventBus）
+1. &emsp;一种组件间通信的方式，适用于<font color=red>任意组件间通信</font>
+2. &emsp;安装全局事件总线
+    ```javascript
+    new Vue({
+        ......
+        beforeCreate() {
+            // 安装全局事件总线。$bus就是当前应用的vm（vue实例对象）
+            Vue.prototype.$bus = this
+        }
+        ......
+    })
+    ```
+3. &emsp;使用事件总线
+    1. &emsp;接收数据：A组件想接收数据，则在A组件中给$bus绑定自定义事件，事件的<font color=red>回调留在A组件自身</font>
+        ```javascript
+        methods() {
+            demo(data){......}
+        }
+        ......
+        mounted() {
+            this.$bus.$on('事件名称',this.demo)
+            // 或者
+            this.$bus.$on('事件名称',(data)=>{
+                ......
+            })
+        }
+        ```
+    2. &emsp;提供数据：B组件想发送数据，则在B组件中触发$bus中绑定的数据，并传递数据<br>
+    &emsp;`this.$bus.emit('事件名称',数据)` <br>
+4. &emsp;最好在 beforeDestory 钩子中，用 `$off` 去解绑<font color=red>当前组件所用到的</font>事件
+    ```javascript
+    mounted() {
+        // 在全局事件总线上绑定hello事件
+        this.$bus.$on('hello',(data)=>{
+            console.log('我是School组件，收到了数据：', data)
+        })   
+    },
+    beforeDestroy() {
+        // 关闭事件
+        this.$bus.$off('hello')
+    }
+    ```

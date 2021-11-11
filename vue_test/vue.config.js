@@ -27,7 +27,10 @@
       // entry: '06_Vue中scoped样式的使用_src/main.js'
 
       // 07_组件自定义事件的使用
-      entry: '07_组件自定义事件的使用_src/main.js'
+      // entry: '07_组件自定义事件的使用_src/main.js'
+
+      // 08_全局事件总线
+      entry: '08_全局事件总线_src/main.js'
     } 
   }
 }
