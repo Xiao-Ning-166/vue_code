@@ -1,6 +1,11 @@
 <template>
     <ul class="list-body">
-        <ListItem v-for="todo in todoList" :key="todo.id" :todo="todo" :handleFinish="handleFinish"/>
+        <ListItem 
+            v-for="todo in todoList" :key="todo.id" 
+            :todo="todo" 
+            :handleFinish="handleFinish"
+            :delTodo="delTodo"
+        />
     </ul>
 </template>
 
@@ -13,7 +18,7 @@
         components: {
             ListItem
         },
-        props: ['todoList','handleFinish']
+        props: ['todoList','handleFinish','delTodo']
     }
 </script>
 

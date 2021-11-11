@@ -4,19 +4,26 @@
             <input type="checkbox" :checked="todo.isFinish" @change="changeFinish(todo.id)"/>
             <span>{{todo.name}}</span>
         </label>
-        <button class="btn btn-danger" style="display:none">删除</button>
+        <button class="btn btn-danger" @click="deleteTodo(todo.id)">删除</button>
     </li>
 </template>
 
 <script>
     export default {
         name: 'ListItem',
-        props: ['todo','handleFinish'],
+        props: ['todo','handleFinish','delTodo'],
         methods: {
             // 改变完成状态
             changeFinish(id) {
                 // 将todo的id传给App组件，通知它改变状态
                 this.handleFinish(id)
+            },
+            // 删除一个todo对象
+            deleteTodo(id) {
+                if(confirm('确定要删除该待办事项吗？')) {
+                    // 将todo的id传给App组件，完成删除
+                    this.delTodo(id)
+                }
             }
         },
     }
@@ -45,10 +52,16 @@
         display: none;
         margin-top: 3px;
     }
-        li:before {
+    li:before {
         content: initial;
     }
     li:last-child {
         border-bottom: none;
+    }
+    li:hover {
+        background-color: #ddd;
+    }
+    li:hover button {
+        display: block;
     }
 </style>

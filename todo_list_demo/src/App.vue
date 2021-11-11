@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <ListHeader :addTodo="addTodo" />
-    <ListBody :todoList="todoList" :handleFinish="handleFinish"/>
+    <ListBody 
+      :todoList="todoList" 
+      :handleFinish="handleFinish"
+      :delTodo="delTodo"
+    />
     <ListFooter></ListFooter>
   </div>
 </template>
@@ -40,6 +44,12 @@
           if(todo.id === id) {
             todo.isFinish = !todo.isFinish
           }
+        })
+      },
+      // 删除一个Todo
+      delTodo(id) {
+        this.todoList = this.todoList.filter((todo)=>{
+          return todo.id !== id
         })
       }
     },
