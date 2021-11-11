@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>LocalStorage的使用</title>
+        <!-- 引入Vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!--  
+   
+                
+        -->
+        <div id="root">
+            <h1>sessionStorage的使用</h1>
+            <button onclick="save()">保存数据</button> <br><br>
+
+            <button onclick="read()">读取数据</button> <br><br>
+
+            <button onclick="del()">删除数据</button> <br><br>
+
+            <button onclick="clearAll()">清空数据</button>
+        </div>
+
+    </body>
+    <script type="text/javascript">
+        // 保存数据
+        function save() {
+            let person = {name:'张三',age:20}
+            /**
+             * 往sessionStorage中存放数据
+             * sessionStorage.setItem(key,value)
+             * key、value都必须是字符串，如果value不是字符串会自动调用toString()
+             */
+            sessionStorage.setItem('msg','sessionStorage的使用')
+            sessionStorage.setItem('person',JSON.stringify(person))
+        }
+
+        // 读取数据
+        function read() {
+            /**
+             * 从sessionStorage中读取数据
+             * sessionStorage.setItem(key)
+             * 如果sessionStorage中没有，会返回 null
+             */
+            var value = sessionStorage.getItem('msg')
+            console.log('msg：',value)
+
+            var person = sessionStorage.getItem('person')
+            console.log(JSON.parse(person))
+        }
+
+        // 删除数据
+        function del() {
+            /**
+             * 往sessionStorage中删除数据
+             * sessionStorage.removeItem(key)
+             */
+            sessionStorage.removeItem('msg')
+            sessionStorage.removeItem('person')
+        }
+
+        // 清空数据
+        function clearAll() {
+            sessionStorage.clear()
+        }
+    </script>
+</html>
