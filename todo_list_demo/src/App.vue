@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <ListHeader></ListHeader>
-    <ListBody></ListBody>
+    <ListHeader :addTodo="addTodo" />
+    <ListBody :todoList="todoList"></ListBody>
     <ListFooter></ListFooter>
   </div>
 </template>
@@ -18,7 +18,23 @@
       ListHeader,
       ListBody,
       ListFooter
-    }
+    },
+    data() {
+      return {
+          todoList: [
+              {id:'001',name:'打游戏',isFinish:false},
+              {id:'002',name:'敲代码',isFinish:true},
+              {id:'003',name:'看动漫',isFinish:false}
+          ]
+      }
+    },
+    methods: {
+      // 接收从 Header组件中传入的数据
+      addTodo(todo) {
+        // 将接收到的todo对象加入到todoList数组中
+        this.todoList.unshift(todo)
+      }
+    },
   }
 
 </script>

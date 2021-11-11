@@ -13,15 +13,7 @@
         components: {
             ListItem
         },
-        data() {
-            return {
-                todoList: [
-                    {id:'001',name:'打游戏',isFinish:false},
-                    {id:'002',name:'敲代码',isFinish:true},
-                    {id:'003',name:'看动漫',isFinish:false}
-                ]
-            }
-        }
+        props: ['todoList']
     }
 </script>
 

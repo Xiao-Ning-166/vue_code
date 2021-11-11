@@ -1,15 +1,31 @@
 <template>
     <div class="list-header">
-        <input type="text" placeholder="请输入你的任务名称，按回车键确认"/>
+        <input type="text" @keyup.enter="add" v-model="name" placeholder="请输入你的任务名称，按回车键确认"/>
     </div>
 </template>
 
 <script>
+    import {nanoid} from 'nanoid'
     export default {
         name: 'ListHeader',
         data() {
             return {
-                
+                name: '',
+                todo: {}
+            }
+        },
+        props: ['addTodo'],
+        methods: {
+            add() {
+                if(!this.name.trim()) {
+                    return
+                }
+                // 封装todo对象
+                this.todo = {id:nanoid(),name:this.name,isFinish:false}
+                // 将todo对象传给App组件
+                this.addTodo(this.todo)
+                // 重置输入框
+                this.name = ''
             }
         }
     }
