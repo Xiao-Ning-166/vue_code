@@ -1,7 +1,7 @@
 <template>
     <li>
         <label>
-            <input type="checkbox" :checked="todo.isFinish"/>
+            <input type="checkbox" :checked="todo.isFinish" @change="changeFinish(todo.id)"/>
             <span>{{todo.name}}</span>
         </label>
         <button class="btn btn-danger" style="display:none">删除</button>
@@ -11,7 +11,14 @@
 <script>
     export default {
         name: 'ListItem',
-        props: ['todo']
+        props: ['todo','handleFinish'],
+        methods: {
+            // 改变完成状态
+            changeFinish(id) {
+                // 将todo的id传给App组件，通知它改变状态
+                this.handleFinish(id)
+            }
+        },
     }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <ListHeader :addTodo="addTodo" />
-    <ListBody :todoList="todoList"></ListBody>
+    <ListBody :todoList="todoList" :handleFinish="handleFinish"/>
     <ListFooter></ListFooter>
   </div>
 </template>
@@ -33,6 +33,14 @@
       addTodo(todo) {
         // 将接收到的todo对象加入到todoList数组中
         this.todoList.unshift(todo)
+      },
+      // 勾选或者取消勾选
+      handleFinish(id) {
+        this.todoList.forEach((todo)=>{
+          if(todo.id === id) {
+            todo.isFinish = !todo.isFinish
+          }
+        })
       }
     },
   }
