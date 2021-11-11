@@ -24,7 +24,10 @@
       // entry: '05_Vue中插件的使用_src/main.js'
 
       // 06_Vue中scoped样式的使用
-      entry: '06_Vue中scoped样式的使用_src/main.js'
+      // entry: '06_Vue中scoped样式的使用_src/main.js'
+
+      // 07_组件自定义事件的使用
+      entry: '07_组件自定义事件的使用_src/main.js'
     } 
   }
 }
