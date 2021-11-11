@@ -6,7 +6,7 @@
       :handleFinish="handleFinish"
       :delTodo="delTodo"
     />
-    <ListFooter></ListFooter>
+    <ListFooter :todoList="todoList" />
   </div>
 </template>
 
