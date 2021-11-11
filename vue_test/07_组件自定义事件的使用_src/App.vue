@@ -9,7 +9,7 @@
         <!-- <Student v-on:getName="getStudentName"/> -->
 
         <!-- 通过父组件给子组件绑定自定义事件实现：子给父传递数据。（第一种方法，使用ref） -->
-        <Student ref="student"/>
+        <Student ref="student" @click.native="show"/>
     </div>
 </template>
 
@@ -36,6 +36,9 @@
             },
             getStudentAge(age) {
                 console.log('学生年龄：',age)
+            },
+            show() {
+                alert('原生的事件')
             }
         },
         mounted() {
