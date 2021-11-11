@@ -6,7 +6,11 @@
       :handleFinish="handleFinish"
       :delTodo="delTodo"
     />
-    <ListFooter :todoList="todoList" />
+    <ListFooter 
+      :todoList="todoList" 
+      :handleCheckAll="handleCheckAll"
+      :handleClearAll="handleClearAll"
+    />
   </div>
 </template>
 
@@ -50,6 +54,18 @@
       delTodo(id) {
         this.todoList = this.todoList.filter((todo)=>{
           return todo.id !== id
+        })
+      },
+      // 全选 or 全不选
+      handleCheckAll(checked) {
+        this.todoList.forEach((todo)=>{
+          todo.isFinish = checked
+        })
+      },
+      // 清空已完成
+      handleClearAll() {
+        this.todoList = this.todoList.filter((todo) => {
+          return !todo.isFinish
         })
       }
     },
