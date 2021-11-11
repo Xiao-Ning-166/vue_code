@@ -33,11 +33,16 @@
             },
             getStudentName(name) {
                 console.log('学生姓名：',name)
+            },
+            getStudentAge(age) {
+                console.log('学生年龄：',age)
             }
         },
         mounted() {
             // 绑定事件
             this.$refs.student.$on('getName',this.getStudentName)
+            this.$refs.student.$on('getAge',this.getStudentAge)
+
             // 绑定自定义事件（只触发一次）
             // this.$refs.student.$once('getName',this.getStudentName)   
         }
