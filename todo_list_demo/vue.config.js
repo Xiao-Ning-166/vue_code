@@ -12,7 +12,10 @@ module.exports = {
         // entry: '03_TodoList案例_事件总线_src/main.js'
 
         // 04_TodoList案例_消息订阅与发布_src
-        entry: '04_TodoList案例_消息订阅与发布_src/main.js'
+        // entry: '04_TodoList案例_消息订阅与发布_src/main.js'
+
+        // 05_TodoList案例_编辑_src
+        entry: '05_TodoList案例_编辑_src/main.js'
       } 
     }
   }
