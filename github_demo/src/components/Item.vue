@@ -1,15 +1,16 @@
 <template>
     <div class="card">
-        <a href="https://github.com/xxxxxx" target="_blank">
-        <img src="https://cn.vuejs.org/images/logo.svg" style='width: 100px'/>
+        <a :href="user.html_url" target="_blank">
+        <img :src="user.avatar_url" style='width: 100px'/>
         </a>
-        <p class="card-text">xxxxxx</p>
+        <p class="card-text">{{user.login}}</p>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'Item'
+        name: 'Item',
+        props: ['user']
     }
 </script>
 

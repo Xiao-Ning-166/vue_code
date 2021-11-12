@@ -1,9 +1,9 @@
 <template>
     <div class="row">
-        <Item />
-        <Item />
-        <Item />
-        <Item />
+        <Item 
+            v-for="user in userList" :key="user.id" 
+            :user="user"
+        />
     </div>
 </template>
 
@@ -13,7 +13,26 @@
         name: 'List',
         components: {
             Item
-        }
+        },
+        data() {
+            return {
+                userList: []
+            }
+        },
+        methods: {
+            getUserList(items) {
+                this.userList = items
+                console.log('List组件',items)
+            }
+        },
+        mounted() {
+            // 给全局事件总线绑定getUserList事件
+            this.$bus.$on('getUserList',this.getUserList)
+        },
+        beforeDestroy() {
+            // 销毁自定义事件
+            this.$bus.$off('getUserList')
+        },
     }
 </script>
 
