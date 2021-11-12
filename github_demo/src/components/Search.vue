@@ -19,16 +19,19 @@
         },
         methods: {
             searchUserList() {
+                // 请求之前更新列表数据
+                this.$bus.$emit('updateListInfo',{isBegin:false,isLoading:true,errorMsg:'',userList:[]})
                 axios.get(`https://api.github.com/search/users?q=${this.queryString}`).then(
                     // 成功的回调函数
                     response => {
                         console.log(response.data.items)
-                        // 将数据给List组件
-                        this.$bus.$emit('getUserList',response.data.items)
+                        // 请求成功后更新列表数据
+                        this.$bus.$emit('updateListInfo',{isBegin:false,isLoading:false,errorMsg:'',userList:response.data.items})
                     },
                     // 失败的回调函数
                     error => {
-                        console.log('请求失败',error.message)
+                        // 请求失败后更新列表数据
+                        this.$bus.$emit('updateListInfo',{isBegin:false,isLoading:false,errorMsg:error.message,userList:[]})
                     }
                 )
             }

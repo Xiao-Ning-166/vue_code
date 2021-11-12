@@ -1,9 +1,17 @@
 <template>
     <div class="row">
+        <!-- 展示用户列表 -->
         <Item 
-            v-for="user in userList" :key="user.id" 
+            v-show="info.userList.length > 0"
+            v-for="user in info.userList" :key="user.id" 
             :user="user"
         />
+        <!-- 展示欢迎词 -->
+        <h2 v-show="info.isBegin">Welcome！！！</h2>
+        <!-- 展示加载中 -->
+        <h2 v-show="info.isLoading">Lading！！！</h2>
+        <!-- 展示错误信息 -->
+        <div v-show="info.errorMsg !== ''">{{info.errorMsg}}</div>
     </div>
 </template>
 
@@ -16,18 +24,26 @@
         },
         data() {
             return {
-                userList: []
+                info: {
+                    userList: [],
+                    // 是否是初始状态
+                    isBegin: true,
+                    // 是否是加载中
+                    isLoading: false,
+                    // 错误信息
+                    errorMsg: ''
+                }
             }
         },
         methods: {
-            getUserList(items) {
-                this.userList = items
-                console.log('List组件',items)
+            updateListInfo(listInfo) {
+                console.log(listInfo)
+                this.info = listInfo
             }
         },
         mounted() {
-            // 给全局事件总线绑定getUserList事件
-            this.$bus.$on('getUserList',this.getUserList)
+            // 给全局事件总线绑定updateListInfo事件
+            this.$bus.$on('updateListInfo',this.updateListInfo)
         },
         beforeDestroy() {
             // 销毁自定义事件
