@@ -33,7 +33,10 @@
       // entry: '08_全局事件总线_src/main.js'
 
       // 09_消息订阅与发布_pubsub
-      entry: '09_消息订阅与发布_pubsub_src/main.js'
+      // entry: '09_消息订阅与发布_pubsub_src/main.js'
+
+      // 10_vue中的过渡与动画
+      entry: '10_vue中的过渡与动画_src/main.js'
     } 
   }
 }
