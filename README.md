@@ -113,9 +113,11 @@
     (3) &emsp;接收数据：A组件想接收数据，则在A组件中订阅消息，订阅的<font color=red>回调留在A组件自身</font>
     ```javascript
     methods(){
-        // msgName：订阅消息的名称
+        // msgName：订阅消息的名称。如果不用可以使用 _ 占位
         // data：数据
         demo(msgName,data) {......}
+        // 或 
+        demo(_,data) {......}
     }
     ......
     mounted(){
