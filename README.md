@@ -103,3 +103,27 @@
         this.$bus.$off('hello')
     }
     ```
+<br><br>
+
+## 消息订阅与发布（pubsub）
+1. &emsp;一种组件间通信的方式，适用于<font color=red>任意组件间通信</font>
+2. &emsp;使用步骤：<br>
+    (1) &emsp;安装pubsub：`npm i pubsub-js` <br>
+    (2) &emsp;引入：`import pubsub from 'pubsub-js'` <br>
+    (3) &emsp;接收数据：A组件想接收数据，则在A组件中订阅消息，订阅的<font color=red>回调留在A组件自身</font>
+    ```javascript
+    methods(){
+        // msgName：订阅消息的名称
+        // data：数据
+        demo(msgName,data) {......}
+    }
+    ......
+    mounted(){
+        // 订阅消息
+        this.pid = pubsub.subscribe('消息名称',this.demo)
+    }
+    ```
+    (4) &emsp;提供数据 <br>
+    &emsp;`pubsub.publish('消息名称',数据)` <br>
+    (5) 最好在 beforeDestroy钩子中，用 `pubsub.unsubscribe(pid)` <font color=red>取消订阅</font>
+3. vue中通常使用 <font style="color:red;font-size:16px">全局事件总线</font>
