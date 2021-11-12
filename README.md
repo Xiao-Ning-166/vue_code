@@ -26,6 +26,7 @@
 &emsp;(3) &emsp;localStorage存储的内容，需要手动清除（借用API 或 清空缓存）才会消失 <br/>
 &emsp;(4) &emsp;`xxxxStorage.getItem(xxx)`如果xxx对应的value获取不到，那么getItem的返回值是null。<br/>
 &emsp;(5) &emsp;`JSON.parse(null)`的结果依然是null
+
 <br><br>
 
 
@@ -57,6 +58,7 @@
 6. &emsp;组件上也可以绑定原始DOM事件，需要使用 `native` 修饰符 <br>
 &emsp;- 例如：`<Student @click.native="getStudentName">`
 7. &emsp;注意：通过 `this.$refs.xxx.$on('事件名称',回调)` 绑定自定义事件，回调<font style="color: red;">要么配置在methods中，要么用箭头函数</font>，否则this指向会出问题
+
 <br><br>
 
 
@@ -103,6 +105,7 @@
         this.$bus.$off('hello')
     }
     ```
+
 <br><br>
 
 ## 消息订阅与发布（pubsub）
@@ -129,3 +132,13 @@
     &emsp;`pubsub.publish('消息名称',数据)` <br>
     (5) 最好在 beforeDestroy钩子中，用 `pubsub.unsubscribe(pid)` <font color=red>取消订阅</font>
 3. vue中通常使用 <font style="color:red;font-size:16px">全局事件总线</font>
+
+<br><br>
+
+## nextTick
+1. &emsp;语法：<br>
+    &emsp;`this.$nextTick(回调函数)` <br>
+2. 作用：<br>
+    &emsp;在下一次 DOM 更新结束后执行其指定的回调。
+3. 什么时候用？<br>
+    &emsp;当改变数据后，要基于更新后的新DOM进行某些操作时，要在nextTick所指定的回调函数中执行

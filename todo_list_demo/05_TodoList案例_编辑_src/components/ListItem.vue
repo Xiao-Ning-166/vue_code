@@ -3,7 +3,13 @@
         <label>
             <input type="checkbox" :checked="todo.isFinish" v-show="!todo.isEdit" @change="changeFinish(todo.id)"/>
             <span v-show="!todo.isEdit">{{todo.name}}</span>
-            <input type="text" :value="todo.name" v-show="todo.isEdit" @blur="handleEdit($event,todo)">
+            <input 
+                type="text" 
+                :value="todo.name" 
+                v-show="todo.isEdit" 
+                @blur="handleEdit($event,todo)"
+                ref="editInput"
+            >
         </label>
         <button class="btn btn-danger" @click="deleteTodo(todo.id)">删除</button>
         <button class="btn btn-edit" v-show="!todo.isEdit" @click="editTodo(todo)">编辑</button> 
@@ -39,6 +45,10 @@
                 // } else {
                 //     this.$set(todo,'isEdit',true)
                 // }
+                // 拿到输入框，让它获取焦点
+                this.$nextTick(function(){
+                    this.$refs.editInput.focus()
+                })
             },
             // 完成编辑
             handleEdit(event,todo) {
