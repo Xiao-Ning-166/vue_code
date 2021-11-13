@@ -57,7 +57,10 @@
       // entry: '16_求和案例_vuex版_src/main.js'
 
       // 17_求和案例_vuex多组件间数据共享_src
-      entry: '17_求和案例_vuex多组件间数据共享_src/main.js'
+      // entry: '17_求和案例_vuex多组件间数据共享_src/main.js'
+
+      // 18_求和案例_vuex模块化+命名空间_src
+      entry: '18_求和案例_vuex模块化+命名空间_src/main.js'
     } 
   },
   /* 11_vue中的axios操作_src

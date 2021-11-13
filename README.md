@@ -465,3 +465,61 @@ devServer: {
     }
     ```
     > 备注：使用 `mapActions` 和 `mapMutations` 时，绑定事件时时要传入参数，否则参数是事件对象
+### 7. 模块化+命名空间
+1. 目的：让代码更好维护，让多种数据分类更加明确
+2. 修改 `store.js`
+    ```javascript
+    const countAbout = {
+        // 开启命名空间
+        namespaced: true,
+        state:{x:1},
+        mutations:{...},
+        actions:{...},
+        getters:{
+            bigSum(state) {
+                return state.sum*10
+            }
+        }
+    }
+    const personAbout = {
+        // 开启命名空间
+        namespaced: true,
+        state:{...},
+        mutations:{...},
+        actions:{...},
+    }
+    const store = new Vuex.Store({
+        modules: {
+            conuntAbout,
+            personAbout
+        }
+    })
+    ```
+3. 开启命名空间后，组件中读取state数据：
+    ```javascript
+    // 方式一：自己直接读取
+    this.$store.state.personAbout.list
+    // 方式二：借助mapState读取
+    ...mapState('countAbout',['sum','school','subject'])
+    ```
+4. 开启命名空间后，组件中读取getters数据
+    ```javascript
+    // 方式一：自己直接读取
+    this.$store.getters['personAbout/firstPersonName']
+    // 方式二：借助mapGetters读取
+    ...mapGetters('countAbout',['bigSum'])
+    ```
+5. 开启命名空间后，组件调用dispatch
+    ```javascript
+    // 方式一：自己直接读取
+    this.$store.dispatch('personAbout/addPersonWang',person)
+    // 方式二：借助mapActions读取
+    ...mapGetters('countAbout',{addOdd:'addOdd',addWait:'addWait'})
+    ```
+6. 开启命名空间后，组件调用commit
+    ```javascript
+    // 方式一：自己直接读取
+    this.$store.commit('personAbout/firstPersonName',person)
+    // 方式二：借助mapMutaions读取
+    ...mapGetters('countAbout',{add:'ADD',sub:'SUB'})
+    ```
