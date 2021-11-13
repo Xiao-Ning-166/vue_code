@@ -42,7 +42,10 @@
       // entry: '11_vue中的axios操作_src/main.js'
 
       // 12_vue中的vue-resource操作
-      entry: '12_vue中的vue-resource操作_src/main.js'
+      // entry: '12_vue中的vue-resource操作_src/main.js'
+
+      // 13_vue中的插槽的使用
+      entry: '13_vue中的插槽的使用_src/main.js'
     } 
   },
   /* 11_vue中的axios操作_src

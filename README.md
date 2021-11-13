@@ -208,3 +208,80 @@ devServer: {
 #### 说明
 1. 优点：可以配置多个代理，且可以灵活的控制请求是否走代理
 2. 缺点：配置略微繁琐，请求资源时必须加前缀
+
+<br><br>
+
+## 插槽
+1. 作用：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于 <font style="color:red;font-size:16px">父组件 ===> 子组件</font>
+2. 分类：默认插槽、具名插槽、作用插槽
+### 插槽使用方式：
+#### 默认插槽
+```html
+父组件中：
+    <Demo>
+        <div>html结构</div>
+    </Demo>
+子组件中：
+    <template>
+        <div>
+            <!-- 定义插槽 -->
+            <slot>插槽默认内容<slot>
+        </div>
+    </template>
+```
+#### 具名插槽
+```html
+父组件中：
+    <Demo>
+        <!-- 方式一：可以不用template，指定 插槽名字即可 -->
+        <template slot="插槽名字">
+            <div>html结构1</div>
+        </template>
+
+        <!-- 方式二：必须要 template 结构 -->
+        <template v-slot:插槽名字>
+            <div>html结构2</div>
+        </template>
+    </Demo>
+子组件：
+    <template>
+        <div>
+            <!-- 定义插槽 -->
+            <slot name="插槽名字1">插槽默认内容1<slot>
+            <slot name="插槽名字2">插槽默认内容2<slot>
+        </div>
+    </template>
+```
+#### 作用域插槽
+1. 理解：<font style="color:red;font-size:16px">数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定。</font>（例如：games数据在Category组件中，但使用数据遍历出来的结构由App组件决定）
+2. 具体方式：
+```html
+父组件中：
+    <Demo>
+        <!-- 方式二：必须要 template 结构 -->
+        <template scope="scopeData">
+            <!-- 例如生成ul列表 -->
+            <ul>
+                <li v-for="g in scopeDta.games" :key="g">{{g}}</li>
+            </ul>
+        </template>
+    </Demo>
+子组件中：
+    <template>
+        <div>
+            <slot :games="games"></slot>
+        </div>
+    </template>
+    <script>
+        export default {
+            name: 'Demo',
+            // 数据在子组件自身
+            data: {
+                return {
+                    games: ['lol','lolm','大表哥2']
+                }
+            }
+        }
+    </script>
+```
+3. 作用域插槽也可以指定 name 属性
