@@ -341,3 +341,73 @@ devServer: {
         render: h => h(App),
     })
     ```
+### 4. 基本使用
+1. 初始化数据、配置 `actions`、`mutations`、操作文件 `store.js`
+    ```javascript
+    // 引入vue核心库
+    import Vue from 'vue'
+    // 引入Vuex
+    import Vuex from 'vuex'
+
+    // 使用Vuex插件
+    Vue.use(Vuex)
+
+    // 准备actions —— 用于响应组件中的动作
+    const actions = {
+        /*
+            响应组件中加的动作
+            context：上下文对象，有 dispatch、commit等方法
+        */
+        add(context,n) {
+            context.commit('ADD', n)
+        }
+    }
+    // 准备mutations —— 用于操作数据
+    const mutations = {
+        // 执行加
+        ADD(state,n) {
+            state.sum += n
+        }
+    }
+    // 准备state —— 用于准备存储数据
+    const state = {
+        sum: 0,
+    }
+
+    // 创建并暴露 store
+    export default new Vuex.Store({
+        // actions: actions,
+        // mutations: mutations,
+        // state: state
+
+        // 简写形式：当key名 = value名
+        actions,
+        mutations,
+        state
+    })
+    ```
+2. 组件中读取vuex中的数据：
+    `$store.state.sum`
+3. 组件中修改vuex中的数据：
+    `$store.dispatch('action中的方法名',数据)`
+    或
+    `$store.commit('muations中的方法名',数据)`
+    > 备注：若没有网络请求或其他业务逻辑，组件中而也可以越过 `actions`，即不写 `dispatch`，直接写 `commit`
+### 5. gtters配置项的使用
+1. 概念：当 state 中的数据需要经过加工后再使用时，可以使用 getters 加工
+2. 在 `store.js` 中 追加 `getters` 配置
+    ```javascript
+    ......
+    const getters = {
+        // state：可以读/写 state 配置项中的参数值
+        bigSum(state) {
+            return state.sum * 10
+        }
+    }
+    // 创建并暴露 store
+    expore default new Vuex.Store({
+        ......
+        getters
+    })
+    ```
+3. 组件中读取数据：`$store.getters.bigSum`
