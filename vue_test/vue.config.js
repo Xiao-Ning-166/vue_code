@@ -54,7 +54,10 @@
       // entry: '15_搭建vuex开发环境_src/main.js'
 
       // 16_求和案例_vuex版_src
-      entry: '16_求和案例_vuex版_src/main.js'
+      // entry: '16_求和案例_vuex版_src/main.js'
+
+      // 17_求和案例_vuex多组件间数据共享_src
+      entry: '17_求和案例_vuex多组件间数据共享_src/main.js'
     } 
   },
   /* 11_vue中的axios操作_src
