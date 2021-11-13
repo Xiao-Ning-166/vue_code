@@ -39,26 +39,31 @@
       // entry: '10_vue中的过渡与动画_src/main.js'
 
       // 11_vue中的axios操作_src
-      entry: '11_vue中的axios操作_src/main.js'
+      // entry: '11_vue中的axios操作_src/main.js'
+
+      // 12_vue中的vue-resource操作
+      entry: '12_vue中的vue-resource操作_src/main.js'
     } 
   },
+  /* 11_vue中的axios操作_src
   // 开启代理服务器。这种方式只能配置一个代理服务器
   // devServer: {
   //   proxy: 'http://localhost:5000'
   // },
 
   // 方式二：
-  devServer: {
-    proxy: {
-      '/atguigu': {
-        target: 'http://localhost:5000',
-        // 地址重写，去掉路径中的 /atguigu
-        pathRewrite: {'^/atguigu':''},
-        // 用于支持 websocket
-        ws: true,
-        // 用于控制请求头中的host值
-        changeOrigin: true
-      }
-    }
-  }
+  // devServer: {
+  //   proxy: {
+  //     '/atguigu': {
+  //       target: 'http://localhost:5000',
+  //       // 地址重写，去掉路径中的 /atguigu
+  //       pathRewrite: {'^/atguigu':''},
+  //       // 用于支持 websocket
+  //       ws: true,
+  //       // 用于控制请求头中的host值
+  //       changeOrigin: true
+  //     }
+  //   }
+  // }
+  */
 }
