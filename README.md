@@ -285,3 +285,59 @@ devServer: {
     </script>
 ```
 3. 作用域插槽也可以指定 name 属性
+
+<br><br>
+
+## Vuex
+### 1. 概念
+    在Vue中实现集中式状态（数据）管理的一个Vue插件，对vue应用中多个组件的共享状态进行集中式的管理（读/写），也是一种组件间通信的方式，且适用于任意组件间通信
+### 2.何时使用？
+    多个组件需要共享数据时
+### 3.搭建vuex环境
+1. 创建文件：`src/store/index.js`
+    ```javascript
+    // 引入vue
+    import Vue from 'vue'
+    // 引入Vuex
+    import Vuex from 'vuex'
+
+    // 使用Vuex插件
+    Vue.use(Vuex)
+
+    // 准备actions —— 用于响应组件中的动作
+    const actions = {}
+    // 准备mutations —— 用于操作数据
+    const mutations = {}
+    // 准备state —— 用于准备存储数据
+    const state = {}
+
+    // 创建并暴露 store
+    export default new Vuex.Store({
+        // actions: actions,
+        // mutations: mutations,
+        // state: state
+
+        // 简写形式：当key名 = value名
+        actions,
+        mutations,
+        state
+    })
+
+    ```
+2. 在 `mian.js` 中创建 vm 时传入 `store` 配置项
+    ```javascript
+    import Vue from 'vue'
+    import App from './App.vue'
+
+    // 引入store
+    import store from './store/index'
+
+    Vue.config.productionTip=false
+
+
+    new Vue({
+        el: '#app',
+        store: store,
+        render: h => h(App),
+    })
+    ```

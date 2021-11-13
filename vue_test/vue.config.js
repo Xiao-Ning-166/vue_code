@@ -48,7 +48,10 @@
       // entry: '13_vue中的插槽的使用_src/main.js'
 
       // 14_求和案例_纯vue版_src
-      entry: '14_求和案例_纯vue版_src/main.js'
+      // entry: '14_求和案例_纯vue版_src/main.js'
+
+      // 15_搭建vuex开发环境_src
+      entry: '15_搭建vuex开发环境_src/main.js'
     } 
   },
   /* 11_vue中的axios操作_src
