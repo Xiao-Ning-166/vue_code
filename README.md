@@ -411,3 +411,43 @@ devServer: {
     })
     ```
 3. 组件中读取数据：`$store.getters.bigSum`
+### 6. 四个 map 方法的使用
+1. **mapState方法**：用于帮助我们映射 `state` 中的数据为计算属性
+    ```javascript
+    computed: {
+        // 借助mapState生成计算属性（对象写法）
+            // 格式：计算属性名:State中的属性名
+        ...mapState({sum:'sum',school:'school',subject:'subject'})
+
+        // 借助mapState生成计算属性（数组写法）
+            // 场景：当 计算属性名 = State中的属性名
+        ...mapState(['sum','school','subject'])
+
+    }
+    ```
+2. **mapGetters方法**：用于帮助我们映射 `getters` 中的数据为计算属性
+    ```javascript
+    computed: {
+        // 借助mapGetters生成计算属性（对象写法）
+            // 格式：计算属性名:Getters中的属性名
+        ...mapState({bigSum:'bigSum'})
+
+        // 借助mapGetters生成计算属性（数组写法）
+            // 场景：当 计算属性名 = Getters中的属性名
+        ...mapState(['bigSum'])
+
+    }
+    ```
+3. **mapActions方法**：用于帮助我们生成与 `actions` 对话的方法，即：包含 `$store.dispatch(xxx)` 的函数
+    ```javascript
+    methods:{
+        // 靠mapAction生成：add、sub（对象形式）
+            // 格式：methods中的方法名:Actions中的方法名
+        ...mapActions({add:'add',sub:'sub'})
+
+        // 靠mapAction生成：add、sub（数组形式）
+            // 场景：methods中的方法名 = Actions中的方法名
+        ...mapActions(['add','sub'])
+
+    }
+    ```
