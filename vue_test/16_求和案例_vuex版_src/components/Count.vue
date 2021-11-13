@@ -8,16 +8,16 @@
             <option value="2">2</option>
             <option value="3">3</option>
         </select>
-        <button @click="add">+</button>
-        <button @click="sub">-</button>
-        <button @click="addOdd">当前和为奇数时再加</button>
-        <button @click="addWait">等500ms再加</button>
+        <button @click="add(n)">+</button>
+        <button @click="sub(n)">-</button>
+        <button @click="addOdd(n)">当前和为奇数时再加</button>
+        <button @click="addWait(n)">等500ms再加</button>
     </div>
 </template>
 
 <script>
     // 引入mapState
-    import {mapGetters, mapState} from 'vuex'
+    import {mapActions, mapGetters, mapMutations, mapState} from 'vuex'
     export default {
         name: 'Count',
         data() {
@@ -26,6 +26,7 @@
             }
         },
         methods: {
+            /*
             add() {
                 // this.$store.dispatch('add',this.n)
                 this.$store.commit('ADD',this.n)
@@ -34,12 +35,27 @@
                 // this.$store.dispatch('sub',this.n)
                 this.$store.commit('SUB',this.n)
             },
+            */
+            // 对象写法
+            ...mapMutations({add:'ADD',sub:'SUB'}),
+
+            // 数组写法
+            // ...mapMutations(['ADD','SUB']),
+
+            /*
             addOdd() {
                 this.$store.dispatch('addOdd',this.n)
             },
             addWait() {
                 this.$store.dispatch('addWait',this.n)
             }
+            */
+
+           // 对象写法
+           ...mapActions({addOdd:'addOdd',addWait:'addWait'}),
+
+            // 数组写法
+            // ...mapActions(['addOdd','addWait'])
         },
         computed: {
             // 借助 mapState 生成计算属性，从 State 中读取数据（对象写法）
@@ -54,8 +70,6 @@
 
             // 借助 mapGetters 生成计算属性，从 getters 中读取数据（数组写法）
             ...mapGetters(['bigSum']),
-
-
         }
     }
 </script>

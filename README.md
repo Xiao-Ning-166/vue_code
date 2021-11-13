@@ -451,3 +451,17 @@ devServer: {
 
     }
     ```
+4. **mapMutations方法**：用于帮助我们生成 `mutations` 对话的方法，即：包含 `$store.commit(xxx)` 的函数
+    ```javascript
+    methods:{
+        // 靠mapMutations生成：ADD、SUB（对象形式）
+            // 格式：methods中的方法名:mapMutations中的方法名
+        ...mapActions({add:'ADD',sub:'SUB'})
+
+        // 靠mapMutations生成：ADD、SUB（数组形式）
+            // 场景：methods中的方法名 = mapMutations中的方法名
+        ...mapActions(['ADD','SUB'])
+
+    }
+    ```
+    > 备注：使用 `mapActions` 和 `mapMutations` 时，绑定事件时时要传入参数，否则参数是事件对象
