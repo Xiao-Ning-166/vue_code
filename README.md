@@ -769,7 +769,18 @@ devServer: {
 1. 作用：让不展示的路由组件保持挂在，不被销毁
 2. 具体编码
     ```html
+    <!-- 缓存一个 -->
     <keep-alive include="组件名称">
         <router-view></router-view>
     </keep-alive>
+
+    <!-- 缓存多个 -->
+    <keep-alive :include="['组件名称1',...]">
+        <router-view></router-view>
+    </keep-alive>
     ```
+### 11. 两个新的声明周期函数
+1. 作用路由组件所独有的两个钩子，用于捕获路由组件的激活状态。
+2. 具体名字：
+    - `activated`：路由组件被激活时触发
+    - `deactivated`：路由组件失活时触发
