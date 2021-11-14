@@ -1,0 +1,50 @@
+<template>
+  <div>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <div class="page-header"><h2>{{title}}</h2></div>
+        <button @click="back">后退一步</button>
+        <button @click="forward">前进一步</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-2">
+        <div class="list-group">
+
+            <!-- Vue中借助router-link标签实现路由的切换 -->
+            <router-link class="list-group-item" active-class="active" to="/about">About</router-link>
+            <router-link class="list-group-item" active-class="active" to="/home">Home</router-link>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="panel">
+            <div class="panel-body">
+                <!-- 指定组件的呈现位置 -->
+                <router-view></router-view>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+
+    export default {
+        name: 'App',
+        data() {
+            return {
+                title: 'vue-router —— 路由的基本使用'
+            }
+        },
+        methods: {
+          back() {
+            this.$router.back()
+          },
+          forward() {
+            this.$router.forward()
+          }
+        },
+    }
+</script>
+

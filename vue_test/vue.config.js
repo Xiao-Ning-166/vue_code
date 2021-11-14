@@ -75,7 +75,10 @@
       // entry: '22_路由的params参数的使用_src/main.js'
 
       // 23_路由的props配置的使用_src
-      entry: '23_路由的props配置的使用_src/main.js'
+      // entry: '23_路由的props配置的使用_src/main.js'
+
+      // 24_编程式路由导航_src
+      entry: '24_编程式路由导航_src/main.js'
     } 
   },
   /* 11_vue中的axios操作_src

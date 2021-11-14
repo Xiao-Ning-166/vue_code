@@ -730,3 +730,38 @@ devServer: {
     }
 }
 ```
+### 8. `<reouter-link>`的replace属性
+1. 作用：控制路由跳转时操作浏览器历史记录的模式
+2. 浏览器的历史记录有两种写入方式：分别为 `push` 和 `replace`。
+    - `push`：追加历史记录
+    - `replace`：替换当前记录
+    > 路由跳转时默认为 `push`
+3. 如何开启 `replace` 模式：`<router-link replace ......>News</router-link>`
+### 9. 编程式路由导航
+1. 作用：不借助 `<router-link>` 实现路由跳转
+2. 具体编码：
+    ```javascript
+    // $router的两个API
+    pushShow(m) {
+        this.$router.push({
+            name: 'xiangqing',
+            params: {
+                id: m.id,
+                title: m.title
+            }
+        })
+    },
+    replaceShow(m) {
+        this.$router.replace({
+            name: 'xiangqing',
+            params: {
+                id: m.id,
+                title: m.title
+            }
+        })
+    }
+    ```
+3. `$router的其他API`
+    - `$router.back()`：向后退一步
+    - `$router.forward()`：向前进一步
+    - `$router.go(n)`：n为正，向前进n步；n为负，向后退n步
