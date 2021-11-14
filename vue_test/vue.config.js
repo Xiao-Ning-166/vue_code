@@ -63,7 +63,10 @@
       // entry: '18_求和案例_vuex模块化+命名空间_src/main.js'
 
       // 19_vue-router_路由的基本使用_src
-      entry: '19_vue-router_路由的基本使用_src/main.js'
+      // entry: '19_vue-router_路由的基本使用_src/main.js'
+
+      // 20_嵌套（多级）路由的使用_src
+      entry: '20_嵌套（多级）路由的使用_src/main.js'
     } 
   },
   /* 11_vue中的axios操作_src
