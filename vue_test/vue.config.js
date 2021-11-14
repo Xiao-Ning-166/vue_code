@@ -84,7 +84,10 @@
       // entry: '25_缓存路由组件_src/main.js'
 
       // 26_路由中的两个特有的生命周期函数_src
-      entry: '26_路由中的两个特有的生命周期函数_src/main.js'
+      // entry: '26_路由中的两个特有的生命周期函数_src/main.js'
+
+      // 27_全局守卫(前置&后置)_src
+      entry: '27_全局守卫(前置&后置)_src/main.js'
     } 
   },
   /* 11_vue中的axios操作_src

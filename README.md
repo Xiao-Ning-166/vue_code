@@ -784,3 +784,30 @@ devServer: {
 2. 具体名字：
     - `activated`：路由组件被激活时触发
     - `deactivated`：路由组件失活时触发
+### 12. 路由守卫
+1. 作用：对路由进行权限控制
+2. 分类：全局守卫、独享守卫、组件内守卫
+3. 全局守卫（src/router/index.js）
+    ```javascript
+    // 全局前置路由守卫 —— 初始化时调用、每次切换路由之前调用
+    router.beforeEach((to,from,next)=>{
+        console.log('前置守卫',to,from)
+        // 判断当前路由是否需要进行权限控制
+        if(to.meta.isAuth) {
+            // 权限控制的具体控制
+            console.log('判断是否拥有权限')
+            // 放行
+            next()
+        } else {
+            // 放行
+            next()
+        }
+    })
+
+    // 全局后置路由守卫 —— 初始化时调用、每次切换路由之后调用
+    router.afterEach((to,from)=>{
+        console.log('后置守卫',to,from)
+        // 修改网页的title
+        document.title = to.meta.title || '全局路由守卫'
+    })
+    ```
