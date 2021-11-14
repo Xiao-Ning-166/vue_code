@@ -765,3 +765,11 @@ devServer: {
     - `$router.back()`：向后退一步
     - `$router.forward()`：向前进一步
     - `$router.go(n)`：n为正，向前进n步；n为负，向后退n步
+### 10. 缓存路由组件
+1. 作用：让不展示的路由组件保持挂在，不被销毁
+2. 具体编码
+    ```html
+    <keep-alive include="组件名称">
+        <router-view></router-view>
+    </keep-alive>
+    ```

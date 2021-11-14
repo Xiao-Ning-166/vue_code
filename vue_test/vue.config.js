@@ -78,7 +78,10 @@
       // entry: '23_路由的props配置的使用_src/main.js'
 
       // 24_编程式路由导航_src
-      entry: '24_编程式路由导航_src/main.js'
+      // entry: '24_编程式路由导航_src/main.js'
+
+      // 25_缓存路由组件_src
+      entry: '25_缓存路由组件_src/main.js'
     } 
   },
   /* 11_vue中的axios操作_src
