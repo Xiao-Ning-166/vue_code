@@ -523,3 +523,46 @@ devServer: {
     // 方式二：借助mapMutaions读取
     ...mapGetters('countAbout',{add:'ADD',sub:'SUB'})
     ```
+
+<br><br>
+
+## 路由
+> 1. 理解：一个路由（route）就是一组映射关系（key-value），多个路由需要路由器（router）进行管理
+> 2. 前端路由：key是路径，value是组件
+### 1. 基本使用
+1. 安装 `vue-router`，命令：`npm i vue-router`
+2. 应用插件(main.js)：
+    ```javascript
+    // 引入插件
+    import VueRouter from 'vue-router'
+    // 应用插件
+    Vue.use(VueRouter)
+    ```
+3. 编写 router 配置项：
+    ```javascript
+    import VueRouter from "vue-router";
+    import About from "../components/About.vue"
+    import Home from "../components/Home.vue"
+
+    // 创建并暴露一个router实例对象，去管理一组组的路由规则
+    export default new VueRouter({
+        routes: [
+            {
+                path: '/about',
+                component: About
+            },
+            {
+                path: '/home',
+                component: Home
+            }
+        ]
+    })
+    ```
+4. 实现切换（active-class）可配置高亮样式
+    ```html
+    <router-link active-class="高亮样式" to="/about">About</router-link>
+    ```
+5. 指定展示位置
+    ```html
+    <router-view></router-view>
+    ```
