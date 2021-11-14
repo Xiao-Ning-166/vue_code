@@ -620,3 +620,113 @@ devServer: {
     ```
 2. 接收参数：
     `$route.query.参数名`
+### 5. 命名路由
+1. 作用：可以简化路由的跳转
+2. 如何使用：
+    1. 给路由命名
+    ```javascript
+    routes: [
+        {
+            path: '/home',
+            component: Home,
+            children: [
+                {
+                    // 给路由命名
+                    name: 'demo'
+                    path: 'message',
+                    component: Message
+                }
+            ]
+        }
+    ]
+    ```
+    2. 简化跳转
+    ```html
+    <!-- 简化前，需要写完整的路径 -->
+    <router-link to="/home/message">跳转</router-link>
+    <!-- 简化后，直接通过名字跳转 -->
+    <router-link :to="{name:'demo'}">跳转</router-link>
+    <!-- 简化后，配合传递参数 -->
+    <router-link :to="{
+        name:'demo',
+        query:{
+            id:666,
+            title:'你好'
+        }
+    }">跳转</router-link>
+    ```
+### 6. 路由的params参数
+1. 配置路由，声明接收 params 参数
+    ```javascript
+    routes: [
+        {
+            path: '/about',
+            component: About
+        },
+        {
+            path: '/home',
+            component: Home,
+            // 配置嵌套路由
+            children: [
+                {
+                    path: 'message',
+                    component: Message,
+                    children: [
+                        {
+                            name: 'xiangqing',
+                            // 使用占位符声明接收params参数
+                            path: 'detail/:id/:title',
+                            component: Detail
+                        }
+                    ]
+                },
+                {
+                    path: 'news',
+                    component: News
+                }
+            ]
+        }
+    ]
+    ```
+2. 传递参数
+    ```html
+    <!-- 跳转并携带params参数，字符串写法 -->
+    <router-link :to="`/home/message/detail/${m.id}/${m.title}`">{{m.title}}</router-link>
+
+    <!-- 跳转并携带params参数， -->           
+    <router-link :to="{
+        // 使用对象写法，必须用name属性
+        name: 'xiangqing',
+        params: {
+            id: m.id,
+            title: m.title
+        }
+    }">
+        {{m.title}}
+    </router-link>
+    ```
+    > 特别注意：路由携带 params 参数时，若使用 to的对象写法，则不能使用 path配置项，必须使用 name 配置项
+3. 接收参数：`$route.params.参数名`
+### 7. 路由的props配置
+作用：让路由组件更方便的接收到参数
+```javascript
+{
+    name: 'xiangqing',
+    path: 'detail/:id/:title',
+    component: Detail,
+
+    // props的第一种写法，props值为对象，该对象中的所有key-value的组合最终都会通过props传给Detail组件
+    props: {id:'666',title:'hello'}
+
+    // props的第二种写法，props值为布尔值。true：把路由收到的所有params参数通过props传给Detail组件
+    props: true
+
+    // porps的第三种写法，props值为函数，接收到$route。会将返回的对象的key-value以props传给Detail组件
+    props($route) {
+        return {
+            id: $route.params.id,
+            title: $route.params.title
+        }
+    }
+}
+```

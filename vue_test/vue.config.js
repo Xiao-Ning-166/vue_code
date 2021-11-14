@@ -69,7 +69,13 @@
       // entry: '20_嵌套（多级）路由的使用_src/main.js'
 
       // 21_路由的query参数的使用_src
-      entry: '21_路由的query参数的使用_src/main.js'
+      // entry: '21_路由的query参数的使用_src/main.js'
+
+      // 22_路由的params参数的使用_src
+      // entry: '22_路由的params参数的使用_src/main.js'
+
+      // 23_路由的props配置的使用_src
+      entry: '23_路由的props配置的使用_src/main.js'
     } 
   },
   /* 11_vue中的axios操作_src
