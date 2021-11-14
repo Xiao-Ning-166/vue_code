@@ -601,3 +601,22 @@ devServer: {
     ```html
     <router-link to="/home/news"></router-link>
     ```
+### 4. 路由的query参数
+1. 传递参数
+    ```html
+    <!-- 跳转并携带query参数，to的字符串写法 -->
+    <router-link :to="`/home/message/detail?id=${m.id}&title=${m.title}`">{{m.title}}</router-link>
+
+    <!-- 跳转并携带query参数，to的对象写法 -->
+    <router-link :to="{
+        path: '/home/message/detail',
+        query: {
+            id: m.id,
+            title: m.title
+        }
+    }">
+        {{m.title}}
+    </router-link>
+    ```
+2. 接收参数：
+    `$route.query.参数名`
