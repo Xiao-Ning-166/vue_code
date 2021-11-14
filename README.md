@@ -811,3 +811,28 @@ devServer: {
         document.title = to.meta.title || '全局路由守卫'
     })
     ```
+4. 独享守卫（src/router/index.js）
+    ```javascript
+    {
+        name: 'xiaoxi',
+        path: 'message',
+        component: Message,
+        meta: {isAuth:true,title:'消息'},
+        // 独享路由守卫 —— 进入路由组件之前调用
+        beforeEnter(to,form,next) {
+            console.log('独享路由守卫', form)
+            if(to.meta.isAuth) {
+                if(to.meta.title === '新闻') {
+                    // 放行
+                    next()
+                } else {
+                    alert('你的权限不够')
+                }
+            } else {
+                // 放行
+                next()
+            }
+
+        }
+    }
+    ```
